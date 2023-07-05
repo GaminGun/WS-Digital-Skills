@@ -1,0 +1,45 @@
+﻿<Page x:Class="WpfApp1.AddUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" 
+      d:DesignHeight="430" d:DesignWidth="400"
+      Title="Add user">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="5" Height="430" VerticalAlignment="Center">
+            <DockPanel Margin="10">
+                <Label Content="_Email address" Target="{Binding ElementName=EmailInput}" Style="{StaticResource LabelAddUser}"/>
+                <TextBox x:Name="EmailInput" Text="{Binding Email}" FontSize="20" PreviewTextInput="PassEmail_PreviewTextInput" MaxLength="150"/>
+            </DockPanel>
+            <DockPanel Margin="10">
+                <Label Content="_First name" Target="{Binding ElementName=FirstInput}" Style="{StaticResource LabelAddUser}"/>
+                <TextBox x:Name="FirstInput" Text="{Binding FirstName}" FontSize="20" PreviewTextInput="Check_PreviewTextInput" MaxLength="50"/>
+            </DockPanel>
+            <DockPanel Margin="10">
+                <Label Content="_Last name" Target="{Binding ElementName=LastInput}" Style="{StaticResource LabelAddUser}"/>
+                <TextBox x:Name="LastInput" Text="{Binding LastName}" FontSize="20" PreviewTextInput="Check_PreviewTextInput" MaxLength="50"/>
+            </DockPanel>
+            <DockPanel Margin="10">
+                <Label Content="_Office" Target="{Binding ElementName=OfficeSelect}" Style="{StaticResource LabelAddUser}"/>
+                <ComboBox x:Name="OfficeSelect" SelectedItem="{Binding Offices}" DisplayMemberPath="Title" FontSize="20"/>
+            </DockPanel>
+            <DockPanel Margin="10">
+                <Label Content="_Birthdate" Target="{Binding ElementName=DateSelect}" Style="{StaticResource LabelAddUser}"/>
+                <DatePicker Name="DateSelect" SelectedDate="{Binding Bithdate}" FontSize="20"/>
+            </DockPanel>
+            <DockPanel Margin="10">
+                <Label Content="_Password" Target="{Binding ElementName=PasswordInput}" Style="{StaticResource LabelAddUser}"/>
+                <TextBox x:Name="PasswordInput" Text="{Binding Password}"  FontSize="20" PreviewTextInput="PassEmail_PreviewTextInput" MaxLength="50"/>
+            </DockPanel>
+            <DockPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Button x:Name="SaveUser" Content="Save" Click="SaveUser_Click" IsDefault="True" Style="{StaticResource ButtonAddUser}"/>
+                <Button x:Name="CancelBtn" Content="Cancel" Click="CancelBtn_Click" IsCancel="True" Style="{StaticResource ButtonAddUser}" Background="PaleVioletRed"/>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Page>

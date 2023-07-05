@@ -1,0 +1,53 @@
+﻿<Page x:Class="WpfApp1.Admin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" IsVisibleChanged="Window_IsVisibleChanged"
+      d:DesignHeight="800" d:DesignWidth="1200"
+      Title="AMONIC Airlines Automation System">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition />
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Label Content="_Office:" FontSize="20" Margin="5"/>
+            <ComboBox x:Name="OfficeSelectSearch" Style="{StaticResource ComboBoxOffice}" DisplayMemberPath="Title" SelectionChanged="OfficeSelectSearch_SelectionChanged"/>
+        </DockPanel>
+
+        <DataGrid x:Name="UserInfo" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1" FontSize="20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding FirstName}" Width="100"/>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" Width="130"/>
+                <DataGridTextColumn Header="Birthdate" Binding="{Binding Birthdate, StringFormat=d}" Width="110"/>
+                <DataGridTextColumn Header="User Role" Binding="{Binding Roles.Title}" Width="250"/>
+                <DataGridTextColumn Header="Email Address" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Office" Binding="{Binding Offices.Title}" Width="200"/>
+            </DataGrid.Columns>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="White"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Active}" Value="False">
+                            <Setter Property="Background" Value="Red"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Active}" Value="True">
+                            <Setter Property="Background" Value="White"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Roles.Title}" Value="Administrator">
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
+        <DockPanel Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button x:Name="ChangeRole" Content="Change role" Click="ChangeRole_Click" Style="{StaticResource AdminBtn}" Margin="30 10" />
+            <Button x:Name="EnDsLogin" Content="Enable/Disable Login" Click="EnDsLogin_Click" Style="{StaticResource AdminBtn}" Margin="60 10" />
+        </DockPanel>
+    </Grid>
+</Page>
